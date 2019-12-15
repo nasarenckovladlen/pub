@@ -1,16 +1,49 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: tablet02/hw02
+  build_01:
+    machine: true
+    working_directory: ~/my_app
+    parallelism: 1
+    resource_class: medium
     steps:
       - checkout
-      - run: ls  
+      - run: |
+          docker run --privileged tablet02/hw02
+  build_02:
+    machine: true
+    working_directory: ~/my_app
+    parallelism: 1
+    resource_class: medium
+    steps:
+      - checkout
+      - run: |
+          docker run --privileged tablet02/hw02
+  build_03:
+    machine: true
+    working_directory: ~/my_app
+    parallelism: 1
+    resource_class: medium
+    steps:
+      - checkout
+      - run: |
+          docker run --privileged tablet02/hw02
+  build_04:
+    machine: true
+    working_directory: ~/my_app
+    parallelism: 1
+    resource_class: medium
+    steps:
+      - checkout
+      - run: |
+          docker run --privileged tablet02/hw02
 workflows:
   version: 2
   commit:
     jobs:
-      - build
+      - build_01
+      - build_02
+      - build_03
+      - build_04
 
   nightly:
     triggers:
@@ -21,4 +54,7 @@ workflows:
               only:
                 - master
     jobs:
-      - build
+      - build_01
+      - build_02
+      - build_03
+      - build_04
