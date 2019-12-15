@@ -21,4 +21,4 @@ workflows:
               only:
                 - master
     jobs:
-      - build_01
+      - build
